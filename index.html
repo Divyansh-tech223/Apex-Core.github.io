@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Chess Workstation | Coachy</title>
+    <style>
+        /* =====================================================================
+           APEX CORE SYSTEMS - FRONTEND UI SPECIFICATIONS
+           THEME CALIBRATION: LIGHT THEME // CANVAS LIGHT GRAY (#D3D3D3)
+           ===================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #D3D3D3; /* Official Light Gray Canvas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1A1A1A; /* Sharp Charcoal Text */
+            padding: 20px;
+        }
+
+        /* Master Interface Card Grid */
+        .workspace-card {
+            background-color: #FFFFFF; /* Elevated Pure White Panel */
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Modern Soft Drop Shadow */
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        /* Companion Header Design */
+        .directory-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #777777;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .coachy-bubble {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #1A1A1A;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* Action Layout Buttons */
+        .button-grid {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-started {
+            background-color: #00E5FF; /* Vibrant Light Electric Cyan-Blue Hero Accent */
+            color: #FFFFFF;
+            border: none;
+        }
+
+        .btn-started:hover {
+            background-color: #00BCCF;
+            transform: translateY(-1px);
+        }
+
+        .btn-login {
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            border: 2px solid #1A1A1A; /* Clean White Panel Outline */
+        }
+
+        .btn-login:hover {
+            background-color: #F5F5F5;
+            transform: translateY(-1px);
+        }
+
+        /* Logo Branding Typography Footer */
+        footer {
+            margin-top: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #777777; /* Gray APEX typography matrix */
+            text-transform: uppercase;
+        }
+
+        footer span {
+            color: #00E5FF; /* Light Electric Cyan-Blue CORE accent */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Workspace Container Card -->
+    <div class="workspace-card">
+        <div class="directory-header">🤖 Chess Companion Directory</div>
+        
+        <div class="coachy-bubble">
+            Coachy: "Hey! Want to get better at chess. We can do it together. Just sign up or log in and we will get right into it."
+        </div>
+
+        <!-- Action Grid Targets -->
+        <div class="button-grid">
+            <a href="signup.html" class="btn btn-started">GET STARTED</a>
+            <a href="#" class="btn btn-login">LOG IN</a>
+        </div>
+    </div>
+
+    <!-- Official Brand Signature Stamp -->
+    <footer>Made by Apex <span>Core</span></footer>
+
+</body>
+</html>

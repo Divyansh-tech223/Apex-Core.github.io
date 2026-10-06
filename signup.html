@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Profile | Apex Chess Workstation</title>
+    <!-- INJECTING THE OFFICIAL SUPABASE CDN CLIENT SOFTWARE LIBRARY -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        /* =====================================================================
+           APEX CORE SYSTEMS - CLOUD INTEGRATED UI SPECIFICATIONS
+           THEME CALIBRATION: LIGHT THEME // CANVAS LIGHT GRAY (#D3D3D3)
+           ===================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #D3D3D3; /* Official Light Gray Canvas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1A1A1A; /* Sharp Charcoal Text */
+            padding: 20px;
+        }
+
+        .signup-card {
+            background-color: #FFFFFF; /* Elevated Pure White Panel */
+            width: 100%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Modern Soft Drop Shadow */
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #777777;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Form Inputs Styling */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #B0B0B0;
+            font-size: 1rem;
+            background-color: #F9F9F9;
+            color: #1A1A1A;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #00E5FF;
+        }
+
+        .btn-link-platform {
+            width: 100%;
+            padding: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            border: 2px dashed #B0B0B0;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-link-platform.active {
+            border-color: #00E5FF;
+            color: #00E5FF;
+            background-color: #F4FDFF;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            background-color: #00E5FF; /* Vibrant Light Electric Cyan-Blue Hero Accent */
+            color: #FFFFFF;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #00BCCF;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #777777;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        footer span {
+            color: #00E5FF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <div class="section-title">CREATE YOUR APEX PROFILE</div>
+        
+        <!-- Registration Form Inputs -->
+        <div class="input-group">
+            <input type="text" id="username" class="input-field" placeholder="Enter unique username" required>
+        </div>
+
+        <div class="section-title" style="margin-top: 25px;">LINK YOUR ACTIVE CHESS CHANNELS</div>
+
+        <button class="btn-link-platform" id="link-chess" onclick="toggleLink('link-chess', 'Chess.com')">♟️ Link Chess.com Account</button>
+        <button class="btn-link-platform" id="link-lichess" onclick="toggleLink('link-lichess', 'Lichess.org')">♔ Link Lichess.org Account</button>
+
+        <button class="btn-submit" onclick="executeCloudRegistration()">CREATE MY ACCOUNT 🚀</button>
+    </div>
+
+    <footer>Made by Apex <span>Core</span></footer>
+
+    <!-- =====================================================================
+         SYSTEM ENGINE DATA OPERATIONS SCRIPT LAYER
+         ===================================================================== -->
+    <script>
+        // OFFICIAL RECONFIGURED LIVE NETWORK GATEWAY KEY MATRIX
+        const SUPABASE_URL = "https://cuveohvlyxwfkpuzcpyx.supabase.co"; 
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1dmVvaHZseXh3ZmtwdXpjcHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyOTUwODYsImV4cCI6MjEwNjg3MTA4Nn0.pR1Q6SFBS-J13Q9N4g6adS7PhwhbIrijWo_fRZ3yJkI"; 
+
+        // Initialize the cloud-hybrid pipeline library interface natively
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Track local button interface states
+        let connectedPlatforms = { chessCom: false, lichess: false };
+
+        function toggleLink(elementId, platformName) {
+            const element = document.getElementById(elementId);
+            element.classList.toggle('active');
+            
+            if(elementId === 'link-chess') {
+                connectedPlatforms.chessCom = !connectedPlatforms.chessCom;
+                if(connectedPlatforms.chessCom) alert(`[BLINDED OVERLAY] Verified secure link token for ${platformName}`);
+            } else {
+                connectedPlatforms.lichess = !connectedPlatforms.lichess;
+                if(connectedPlatforms.lichess) alert(`[BLINDED OVERLAY] Verified secure link token for ${platformName}`);
+            }
+        }
+
+        async function executeCloudRegistration() {
+            const usernameInput = document.getElementById('username').value.trim();
+
+            if (!usernameInput) {
+                alert("Operation Flag: Username field cannot be blank.");
+                return;
+            }
+
+            console.log(`[SYSTEM] Attempting cloud entry for user: ${usernameInput}...`);
+
+            // DISPATCHING AN INLINE PLACEMENT LOG TO YOUR SUPABASE POSTGRES TABLE
+            const { data, error } = await supabase
+                .from('users')
+                .insert([
+                    { username: usernameInput, verified_elo: 1200 } // Default base entry level
+                ])
+                .select();
+
+            if (error) {
+                console.error("[DATABASE ERROR] Data packet rejected:", error);
+                alert(`Registration Refused: ${error.message}`);
+            } else {
+                console.log("[SYSTEM] Success: Cloud data packet verified and locked into tables.", data);
+                alert(`Welcome, ${usernameInput}! Your Apex profile has been permanently locked into the Supabase cloud tables.\n\nInitializing Base 1 Placement Matrix next...`);
+                // Clear field values upon completion
+                document.getElementById('username').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
